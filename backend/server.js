@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+const connectDB = require("./config/db");
 
 const app = express();
 
@@ -15,8 +16,17 @@ app.use(
 	})
 );
 
+//Connecting Database
+connectDB();
+
 //Middleware
 app.use(express.json());
+
+//Routes
+// app.use("/api/auth", authRoutes)
+// app.use("/api/users", userRoutes)
+// app.use("/app/tasks",taskRoutes)
+// app.use("/app/reports",reportRoutes)
 
 //Start Server
 const PORT = process.env.PORT || 5000;
