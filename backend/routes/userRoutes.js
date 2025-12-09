@@ -1,0 +1,16 @@
+const express = require("express");
+const { adminOnly, protect } = require("../middlewares/authMiddleware");
+const {
+	getUsers,
+	getUserById,
+	deleteUser,
+} = require("../controllers/userController");
+
+const router = express.Router();
+
+//User Management Routes
+router.get("/", protect, adminOnly, getUsers); //Geta all users (Admin only)
+router.get("/:id", protect, getUserById); //get a specific user
+router.delete("/:id", protect, adminOnly, deleteUser); //Delete a user (Admin only)
+
+module.exports = router;

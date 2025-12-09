@@ -6,6 +6,7 @@ const {
 	updateUserProfile,
 } = require("../controllers/authController");
 const { protect } = require("../middlewares/authMiddleware");
+const upload = require("../middlewares/uploadMiddleware");
 
 const router = express.Router();
 
@@ -20,7 +21,7 @@ router.post("/upload-image", upload.single("image"), (req, resp) => {
 	}
 	const imageUrl = `${req.protocol}://${req.get("host")}/uploads/${
 		req.file.filename
-	}}`;
+	}`;
 
 	resp.status(200).json({ imageUrl });
 });
